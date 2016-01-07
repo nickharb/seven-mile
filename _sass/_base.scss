@@ -1,4 +1,69 @@
 /**
+ * Webfonts
+ */
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 3150209, 2016-01-07T13:07:31-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: TrumpGothicPro-Bold by Canada Type
+ * URL: http://www.myfonts.com/fonts/canadatype/trump-gothic-pro/bold/
+ * 
+ * Webfont: TrumpGothicPro-Italic by Canada Type
+ * URL: http://www.myfonts.com/fonts/canadatype/trump-gothic-pro/italic/
+ * 
+ * Webfont: TrumpGothicPro-MediumIt by Canada Type
+ * URL: http://www.myfonts.com/fonts/canadatype/trump-gothic-pro/medium-italic/
+ * 
+ * Webfont: TrumpGothicPro-Medium by Canada Type
+ * URL: http://www.myfonts.com/fonts/canadatype/trump-gothic-pro/medium/
+ * 
+ * Webfont: TrumpGothicPro-BoldItalic by Canada Type
+ * URL: http://www.myfonts.com/fonts/canadatype/trump-gothic-pro/bold-italic/
+ * 
+ * Webfont: TrumpGothicPro by Canada Type
+ * URL: http://www.myfonts.com/fonts/canadatype/trump-gothic-pro/regular/
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3150209
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright &#x00A9; 2005-2013 Canada Type. All rights reserved.
+ * 
+ * © 2016 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/301181");
+
+  
+@font-face {font-family: 'TrumpGothicPro-Bold';src: url('webfonts/301181_0_0.eot');src: url('webfonts/301181_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/301181_0_0.woff2') format('woff2'),url('webfonts/301181_0_0.woff') format('woff'),url('webfonts/301181_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'TrumpGothicPro-Italic';src: url('webfonts/301181_1_0.eot');src: url('webfonts/301181_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/301181_1_0.woff2') format('woff2'),url('webfonts/301181_1_0.woff') format('woff'),url('webfonts/301181_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'TrumpGothicPro-MediumIt';src: url('webfonts/301181_2_0.eot');src: url('webfonts/301181_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/301181_2_0.woff2') format('woff2'),url('webfonts/301181_2_0.woff') format('woff'),url('webfonts/301181_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'TrumpGothicPro-Medium';src: url('webfonts/301181_3_0.eot');src: url('webfonts/301181_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/301181_3_0.woff2') format('woff2'),url('webfonts/301181_3_0.woff') format('woff'),url('webfonts/301181_3_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'TrumpGothicPro-BoldItalic';src: url('webfonts/301181_4_0.eot');src: url('webfonts/301181_4_0.eot?#iefix') format('embedded-opentype'),url('webfonts/301181_4_0.woff2') format('woff2'),url('webfonts/301181_4_0.woff') format('woff'),url('webfonts/301181_4_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'TrumpGothicPro';src: url('webfonts/301181_5_0.eot');src: url('webfonts/301181_5_0.eot?#iefix') format('embedded-opentype'),url('webfonts/301181_5_0.woff2') format('woff2'),url('webfonts/301181_5_0.woff') format('woff'),url('webfonts/301181_5_0.ttf') format('truetype');}
+
+
+
+
+/**
  * Reset some basic elements
  */
 body, h1, h2, h3, h4, h5, h6,
@@ -6,6 +71,21 @@ p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
     margin: 0;
     padding: 0;
+}
+
+
+/**
+ * Border box
+ */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 
@@ -22,6 +102,7 @@ body {
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
 }
+
 
 
 
@@ -154,8 +235,10 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    /*max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));*/
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit-2} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit-2} * 2));
     margin-right: auto;
     margin-left: auto;
     padding-right: $spacing-unit;
@@ -163,8 +246,8 @@ pre {
     @extend %clearfix;
 
     @include media-query($on-laptop) {
-        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit-2}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit-2}));
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
     }

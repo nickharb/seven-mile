@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+  <div id="preloader"></div>
+
   {% include head.html %}
 
   <body>
@@ -13,8 +15,17 @@
       </div>
     </div>
 
-    {% include footer.html %}
+    <!-- {% include footer.html %} -->
 
   </body>
 
 </html>
+
+<script>
+$(document).ready(function() {
+  // site preloader
+  $(window).load(function(){
+    $('#preloader').fadeOut('slow',function(){$(this).remove();});
+  });
+});
+</script>

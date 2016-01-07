@@ -8,6 +8,7 @@
 
     // Positioning context for the mobile navigation icon
     position: relative;
+    z-index: 100
 }
 
 .site-title {
@@ -34,6 +35,7 @@
     }
 
     .page-link {
+        font-size: 18px;
         color: $text-color;
         line-height: $base-line-height;
 

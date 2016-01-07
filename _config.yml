@@ -1,8 +1,9 @@
 # Site settings
-title: Seven Mile Media
+title: Seven Mile Media | Interactive Design
+header: Seven Mile Media
 email: njharb@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Pushing boundaries and taking names
+  Interactive design and web application development
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://sevenmilemedia.com" # the base hostname & protocol for your site
 # twitter_username: jekyllrb

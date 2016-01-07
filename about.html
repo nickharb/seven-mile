@@ -1,32 +1,192 @@
 ---
 layout: page
-title: About
+title: Seven Mile Media | About
+header: About
 permalink: /about/
+weight: 2
 ---
 
 <div class="about">
-
-  <div class="media">
-    <img src="http://placehold.it/400x500">
+  <div class="bg-wrapper">
+    <div id="bg-main" class="bg-img visible"></div>
+    <div id="bg-beer" class="bg-img"></div>
+    <div id="bg-calvin" class="bg-img"></div>
   </div>
 
-  <div class="about-text">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </div>
+  <div id="tabs">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#us" aria-controls="home" role="tab" data-toggle="tab">The Team</a></li>
+      <li role="presentation"><a href="#weekend" aria-controls="profile" role="tab" data-toggle="tab">Weekend</a></li>
+      <li role="presentation"><a href="#contact" aria-controls="messages" role="tab" data-toggle="tab">Contact</a></li>
+    </ul>
 
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="us">
+        <div class="about-text">
+          <p><span>We are a team of two</span> who met in grad school and connected over a mutual love of telling stories online and geeking out over the latest tech. Our work has taken us around the world and includes web development, video production and data visualization.</p>
+          <p>After stints in journalism and environmental advocacy, we've recently come back together to form Seven Mile Media &mdash; a creative digital venture.</p>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="weekend">
+        <div class="about-text">
+          <p><span>The weekend!</span> The time you get to do all the other things you've been dreaming up. We are currently building a web application for creative people to organize and keep track of their ideas. It was born out of frustration with the lack of tools for people creating digital design or visual projects, who often have very different workflows than traditional business-related jobs. So, we decided to build something that works for us and others like us. We are really excited to share it, so stay tuned for updates! And cheers to the weekend.</p>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="contact">
+        <div class="about-text">
+          <p><span>Lauren Malkani</span> lauren.malkani@gmail.com</p>
+          <p><span>Nick Harbaugh</span> njharb@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script src="../js/close-pixelate.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  $('#tabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show');
+    changeBackgroundImage(this);
+  });
+
+  var backgroundImages = {
+    '#us': '#bg-main',
+    '#weekend': '#bg-beer',
+    '#contact': '#bg-calvin'
+  };
+
+  var changeBackgroundImage = function(self) {
+    var target = $(self).attr('href');
+    $('.bg-img').removeClass('visible');
+    $(backgroundImages[target]).addClass('visible');
+  };
+
+});
+
+</script>
 
 <style>
 
-.about .media {
-  max-width: 50%;
-  float: left;
-  margin-right: 30px;
+/* main style overrides */
+
+.site-header {
+  z-index: 999;
+}
+
+/* about styles */
+
+.about {
+  margin-top: 20px;
 }
 
 .about-text {
-  overflow: hidden;
+  z-index: 100;
+  position: relative;
+  font-size: 18px;
+}
+
+.about-text span {
+  /*color: #FB0001;*/
+  /*font-weight: bold;*/
+  color: #111;
+  /*font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;*/
+  font-family: 'TrumpGothicPro-Medium', Helvetica, Arial, sans-serif;
+  letter-spacing: -1px;
+
+  /*font-size: 24px;*/
+  font-size: 40px;
+  line-height: 18px;
+  padding-right: 2px;
+}
+
+/* bg image */
+
+.bg-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.bg-img {
+  background: url(../images/about/about-main.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+}
+
+.bg-wrapper .visible {
+  opacity: 1;
+}
+
+#bg-beer { background-image: url(../images/about/about-beer.jpg); }
+#bg-calvin { background-image: url(../images/about/about-calvin.jpg); }
+
+/* tabs */
+
+#tabs {
+  position: relative;
+  z-index: 10;
+  max-width: 480px;
+  left: -20px;
+  margin: 0 auto;
+}
+.tab-pane {
+  /*padding-top: 30px;*/
+}
+
+.nav-tabs {
+  border: none;
+  margin: 0;
+  width: 200px;
+  float: left;
+  margin-left: -230px;
+  text-align: right;
+}
+
+.nav-tabs > li {
+  float: none;
+  margin-bottom: 5px;
+  font-size: 20px;
+
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.nav-tabs > li > a,
+.nav-tabs > li > a:visited {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: #777;
+}
+
+.nav-tabs > li > a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  color: #111;
 }
 
 </style>

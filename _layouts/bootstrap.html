@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+  <div id="preloader"></div>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+      {{ content }}
+    </div>
+
+    <!-- {% include footer.html %} -->
+
+  </body>
+
+</html>
+
+<script>
+$(document).ready(function() {
+  // site preloader
+  $(window).load(function(){
+    $('#preloader').fadeOut('slow',function(){$(this).remove();});
+  });
+});
+</script>
