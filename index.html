@@ -3,28 +3,55 @@ layout: home
 ---
 
 
-
-
 <div class="home">
 
   <div class="bg-wrapper">
     <div id="bg-main" class="bg-img visible"></div>
     <div id="bg-beer" class="bg-img"></div>
-    <div id="bg-calvin" class="bg-img"></div>
+    <!-- <div id="bg-calvin" class="bg-img"></div>
     <div id="bg-look-center" class="bg-img"></div>
     <div id="bg-dance" class="bg-img"></div>
-    <div id="bg-empty" class="bg-img"></div>
+    <div id="bg-empty" class="bg-img"></div> -->
   </div>
 
   <h1 class="splash-head">Seven Mile Media</h1>
-  <div class="subtitle">
+
+  <!-- <div class="subtitle">
     <h2>create.</h2>
     <h3>art</h3>
     <h3>design</h3>
     <h3>film</h3>
     <h3>code</h3>
     <h3>motion</h3>
+  </div> -->
+
+<!-- <a class="page-link" href="{{ pages.work.url | prepend: site.baseurl }}" class="subtitle-container"> -->
+  <div class="subtitle-container">
+    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+      <div class="flipper">
+        <div class="front">
+          <h2>create.</h2>
+        </div>
+        <div class="back">
+          <h2>explore.</h2>
+        </div>
+      </div>
+    </div>
+    <div class="subtitle first">
+      <h3>art</h3>
+      <h3>design</h3>
+      <h3>film</h3>
+      <h3>code</h3>
+      <h3>motion</h3>
+    </div>
+    <div class="subtitle second">
+      <h3>our</h3>
+      <h3>most</h3>
+      <h3>recent</h3>
+      <h3>work</h3>
+    </div>
   </div>
+<!-- </a> -->
 
   <div class="footer">
     <p>© 2015 Seven Mile Media, LLC</p>
@@ -33,6 +60,70 @@ layout: home
 </div>
 
 <style>
+
+/* entire container, keeps perspective */
+.flip-container {
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  position: relative;
+}
+/* flip the pane when hovered */
+.subtitle-container:hover .flipper, .subtitle-container.hover .flipper {
+  -webkit-transform: rotateX(-180deg);
+  transform: rotateX(-180deg);
+}
+
+.flip-container, .front, .back {
+  width: 100px;
+  height: 50px;
+}
+
+/* flip speed goes here */
+.flipper {
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+
+  /*transition: 0.6s;*/
+  /*transform-style: preserve-3d;*/
+
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+.flip-container .flipper {
+  -webkit-transform-origin: 100% 25px;
+  transform-origin: 100% 25px; /* half of height */
+}
+
+
+
+
+
 
 body {
   /*background: #46D0F4;*/
@@ -87,28 +178,53 @@ h1.splash-head {
   z-index: 10;
 }
 
-.subtitle {
+.subtitle-container {
   position: relative;
   z-index: 10;
   margin: 0 auto;
   margin-top: 0px;
-  max-width: 100px;
+  width: 100px;
+  cursor: pointer;
 }
 
-.subtitle h2, .subtitle h3 {
+.subtitle-container h2, .subtitle-container h3 {
   font-family: Georgia, 'Times New Roman', serif;
   margin: 0;
 }
 
-.subtitle h2 {
+.subtitle-container h2 {
   font-size: 32px;
   margin-bottom: 5px;
 }
 
-.subtitle h3 {
+.subtitle-container h3 {
   font-size: 22px;
-  cursor: pointer;
   /*letter-spacing: 0.02em;*/
+}
+
+.subtitle {
+  position: absolute;
+  top: 40px;
+  -webkit-transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.subtitle.second {
+  opacity: 0;
+  -webkit-transform: translate(0, 20px);
+  transform: translate(0, 20px);
+}
+
+.subtitle-container:hover .subtitle.first {
+  opacity: 0;
+  -webkit-transform: translate(0, -20px);
+  transform: translate(0, -20px);
+}
+
+.subtitle-container:hover .subtitle.second {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
 }
 
 
@@ -141,7 +257,7 @@ h1.splash-head {
   opacity: 1;
 }
 
-#bg-beer { background-image: url(../images/about/about-beer.jpg); }
+#bg-beer { background-image: url(../images/about/about-look-center.jpg); }
 #bg-calvin { background-image: url(../images/about/about-calvin.jpg); }
 #bg-dance { background-image: url(../images/about/about-dance.jpg); }
 #bg-look-center { background-image: url(../images/about/about-look-center-3.jpg); }
@@ -227,19 +343,23 @@ h1.splash-head {
 
 $(document).ready(function($) {
 
-  $('.subtitle h3').mouseover(function (e) {
+  $('.subtitle').hover(function (e) {
     e.preventDefault();
-    // $(this).tab('show');
-    changeBackgroundImage(this);
+    // changeBackgroundImage(this);
+    $('.bg-img').removeClass('visible');
+    $('#bg-beer').addClass('visible');
+  }, function(e) {
+    e.preventDefault();
+    $('.bg-img').removeClass('visible');
+    $('#bg-main').addClass('visible');
   });
 
-  var backgroundImages = ['#bg-main', '#bg-look-center', '#bg-calvin', '#bg-beer', '#bg-dance', '#bg-empty'];
+  var backgroundImages = ['#bg-main', '#bg-look-center', '#bg-calvin', '#bg-beer', '#bg-empty', '#bg-dance'];
 
   var changeBackgroundImage = function(self) {
-    var target = $(self).index('.subtitle h3');
-    console.log(target)
+    // var target = $(self).index('.subtitle h3');
     $('.bg-img').removeClass('visible');
-    $(backgroundImages[target]).addClass('visible');
+    $('#bg-beer').addClass('visible');
   };
 
 });
