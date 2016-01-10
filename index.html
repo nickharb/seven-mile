@@ -14,7 +14,7 @@ layout: home
     <div id="bg-empty" class="bg-img"></div> -->
   </div>
 
-  <h1 class="splash-head">Seven Mile Media</h1>
+  <h1 class="splash-header" id="fit-text">Seven Mile Media</h1>
 
   <!-- <div class="subtitle">
     <h2>create.</h2>
@@ -31,13 +31,22 @@ layout: home
       <div class="flipper">
         <div class="front">
           <h2>create.</h2>
+          <h3>art</h3>
+          <h3>design</h3>
+          <h3>film</h3>
+          <h3>code</h3>
+          <h3>motion</h3>
         </div>
         <div class="back">
           <h2>explore.</h2>
+          <h3>our</h3>
+          <h3>most</h3>
+          <h3>recent</h3>
+          <h3>work</h3>
         </div>
       </div>
     </div>
-    <div class="subtitle first">
+    <!-- <div class="subtitle first">
       <h3>art</h3>
       <h3>design</h3>
       <h3>film</h3>
@@ -49,7 +58,7 @@ layout: home
       <h3>most</h3>
       <h3>recent</h3>
       <h3>work</h3>
-    </div>
+    </div> -->
   </div>
 <!-- </a> -->
 
@@ -69,21 +78,21 @@ layout: home
 }
 /* flip the pane when hovered */
 .subtitle-container:hover .flipper, .subtitle-container.hover .flipper {
-  -webkit-transform: rotateX(-180deg);
-  transform: rotateX(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
 .flip-container, .front, .back {
-  width: 100px;
-  height: 50px;
+  width: 120px;
+  height: 160px;
 }
 
 /* flip speed goes here */
 .flipper {
   -webkit-transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 0.5s ease;
+  -webkit-transition: transform 0.3s ease;
   transform-style: preserve-3d;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 
   /*transition: 0.6s;*/
   /*transform-style: preserve-3d;*/
@@ -105,19 +114,19 @@ layout: home
 .front {
   z-index: 2;
   /* for firefox 31 */
-  -webkit-transform: rotateX(0deg);
-  transform: rotateX(0deg);
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
 .back {
-  -webkit-transform: rotateX(180deg);
-  transform: rotateX(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .flip-container .flipper {
-  -webkit-transform-origin: 100% 25px;
-  transform-origin: 100% 25px; /* half of height */
+  -webkit-transform-origin: 50% 0px;
+  transform-origin: 50% 0px; /* half of height */
 }
 
 
@@ -152,9 +161,6 @@ body {
 
 .site-nav .page-link {
   color: #111;
-  font-size: 20px;
-  text-transform: lowercase;
-  /*color: #FE2E22;*/
 }
 
 .page-content {
@@ -163,7 +169,7 @@ body {
 
 /* background image */
 
-h1.splash-head {
+h1.splash-header {
   position: relative;
   top: 0px;
   text-align: center;
@@ -183,7 +189,8 @@ h1.splash-head {
   z-index: 10;
   margin: 0 auto;
   margin-top: 0px;
-  width: 100px;
+  width: 120px;
+  height: 160px;
   cursor: pointer;
 }
 
@@ -202,7 +209,7 @@ h1.splash-head {
   /*letter-spacing: 0.02em;*/
 }
 
-.subtitle {
+/*.subtitle {
   position: absolute;
   top: 40px;
   -webkit-transition: opacity 0.5s ease, transform 0.5s ease;
@@ -225,7 +232,7 @@ h1.splash-head {
   opacity: 1;
   -webkit-transform: translate(0, 0);
   transform: translate(0, 0);
-}
+}*/
 
 
 /* bg image */
@@ -251,6 +258,9 @@ h1.splash-head {
   height: 100%;
 
   opacity: 0;
+
+  -webkit-transition: opacity 0.6s ease;
+  transition: opacity 0.5s ease;
 }
 
 .bg-wrapper .visible {
@@ -338,20 +348,23 @@ h1.splash-head {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="../js/jquery.fittext.js"></script>
 
 <script>
 
 $(document).ready(function($) {
 
-  $('.subtitle').hover(function (e) {
+  $("#fit-text").fitText(0.5);
+
+  $('.subtitle-container').hover(function (e) {
     e.preventDefault();
     // changeBackgroundImage(this);
-    $('.bg-img').removeClass('visible');
+    // $('.bg-img').removeClass('visible');
     $('#bg-beer').addClass('visible');
   }, function(e) {
     e.preventDefault();
-    $('.bg-img').removeClass('visible');
-    $('#bg-main').addClass('visible');
+    $('#bg-beer').removeClass('visible');
+    // $('#bg-main').addClass('visible');
   });
 
   var backgroundImages = ['#bg-main', '#bg-look-center', '#bg-calvin', '#bg-beer', '#bg-empty', '#bg-dance'];
